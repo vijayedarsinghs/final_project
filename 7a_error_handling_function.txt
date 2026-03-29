@@ -6,9 +6,8 @@ def emotion_detector(text_to_analyze):
     myobj = { "raw_document": { "text": text_to_analyze } }
     response = requests.post(url, json = myobj, headers=headers)
     formatted_response = json.loads(response.text)
-    if "emotionPredictions" not in formatted_response:
-        result = "None"
-    else:
+    if "emotionPrediction" in formatted_response:
         result = formatted_response['emotionPredictions'][0]['emotion']
-
+    else:
+        result = None
     return result
