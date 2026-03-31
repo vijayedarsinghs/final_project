@@ -7,10 +7,9 @@ def sent_detector():
     text_to_analyze = request.args.get('textToAnalyze')
     response = emotion_detector(text_to_analyze)
     if response['anger'] is None:
-        retData = f"Invalid text! Please try again!."
+        retData = f"Invalid text! Please try again!.",400,response
     else:
         retData = f"The given text has been identified as {response}"
-    print("server response", retData)
     return retData
 
 @app.route("/")
